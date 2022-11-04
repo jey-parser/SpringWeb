@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+					http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property> -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"><!-- id는 참조변수와 같은 역할 -->
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+		<property name="username" value="jey1234"></property>
+		<property name="password" value="369369"></property>
+	</bean>
+		
+	<!-- SQL문 처리를 관리할 빈 : sql세션    sqlSessionFactory가 만듬-->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property><!-- 참조변수처럼 경로 있기 때문에 ref에 적어줌 -->		
+		<property name="configLocation" value="classpath:/mybatis-config.xml"></property><!-- 아까 만든 mybatis config 파일 -->
+		<property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property><!-- mappers 폴더 -->
+	</bean>
+	
+	<bean id="sqlSession" name="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache"><!-- 객체를 소거하는 것까지  -->
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+	</bean>
+		
+	<context:component-scan base-package="com.jh.service"></context:component-scan>
+	<context:component-scan base-package="com.jh.dao"></context:component-scan>
+	<context:component-scan base-package="com.jh.serviceImpl"></context:component-scan>
+	<context:component-scan base-package="com.jh.daoImpl"></context:component-scan>
+	<context:component-scan base-package="com.jh.dto"></context:component-scan>
+			
+</beans>

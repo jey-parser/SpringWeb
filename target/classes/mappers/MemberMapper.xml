@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace ="com.jh.mapper.MemberMapper">  <!-- sql을 모아놓은 설정 파일 -->
+ 	
+ 	<select id="findByPw" resultType="int">
+ 		SELECT NVL(count(*),0) cnt FROM member WHERE pw = #{pw}
+ 	</select>
+ 	
+ 	<select id="findByName" resultType="int">
+ 		SELECT nvl(count(*), 0) cnt FROM member WHERE UPPER(name) = UPPER(#{name})
+ 	</select>
+ 	
+ 	<select id="findByMyInfo" resultType="com.jh.dto.MemberDto">
+ 		SELECT member_id as memberId, email, pw, name, birthDate, profile_pic as profilePic, signupTime, lightMode FROM member WHERE member_id = #{loginId}
+ 	</select>
+ 	
+ 	<update id="changeToNewInfo">
+ 		UPDATE member SET name = #{name}, pw = #{pw}, lightMode = #{lightMode}, birthDate = #{birthDate} WHERE member_id = #{loginId}
+ 	</update>
+ 	
+ 	<update id="changeToNewProfilePic">
+ 		UPDATE member SET profile_pic = #{profilePic} WHERE member_id = #{loginId}
+ 	</update>
+ 	
+ 	<delete id="deleteMember">
+ 		DELETE FROM member WHERE member_id = #{loginId}
+ 	</delete>
+ 	
+ </mapper> 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace ="com.jh.mapper.AccountMapper">
+ 	
+ 	<!-- 회원가입 -->
+ 	<select id="findByEmail" resultType="int">
+ 		SELECT NVL(count(*),0) cnt FROM member WHERE email = #{email}
+ 	</select>
+ 	
+ 	<insert id="insertMember">
+ 		INSERT INTO member(member_id, email, pw, name, profile_pic, signupTime, lightMode, birthDate) VALUES (member_seq.nextval, #{email}, #{pw}, #{name}, #{profilePic}, SYSDATE, 'light', #{birthDate})
+ 	</insert>
+ 
+ 	<!-- 로그인 id 찾기-->
+ 	<select id="findByMember" resultType="int">
+ 		SELECT NVL(Max(member_id), 0) FROM member WHERE email = #{email} AND pw = #{pw}
+ 	</select>
+ 
+ </mapper>

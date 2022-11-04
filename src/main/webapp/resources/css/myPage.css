@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+	body, *{
+		margin:0;
+		padding:0;
+		background-color:black;
+		color:white;
+		font-size:13px;
+	}
+	#pageT{
+		padding:60px;
+	}
+	a{
+		font-size:16px;
+		margin:0px 20px;
+		background-color :transparent;
+	}
+	.border{
+		padding:15px;
+		font-size:13px;
+	}
+	.border input{
+		padding:5px;
+		border:none;
+		
+	}
+	#open-modal{
+		color:white;
+		background-image: -webkit-linear-gradient(top,#000000,rgb(125,77,135) 70%);
+		/* background-color: rgb(125,77,135); */
+		border:none;
+	}
+	#outtabox{
+		margin-top:50px;
+	}
+	#toggle{
+		height: 20px;
+	    margin-top: 8px;
+	    margin-left: 20px;
+	}
+	.div-style{
+		width: 100px;
+    	text-align: center;
+	}
+	.modal-style{
+		display: flex;
+		align-items: center;
+	}
+	#delete{
+		background-image: -webkit-linear-gradient(top,#000000,rgb(42,51,66) 100%);
+		color:white;
+		border:none;
+	}

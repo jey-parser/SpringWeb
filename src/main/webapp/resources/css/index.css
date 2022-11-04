@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+	body, *{
+		margin:0;
+		padding:0;
+		background-color:black;
+		color:white;
+		font-size:13px;
+	}
+	a.carousel-control-prev, a.carousel-control-next {  
+		opacity: 0;
+	}
+	.carousel-indicators{
+		opacity:0;
+	}
+	.carousel-inner {
+		margin-top:40px;
+	}
+	.carousel-inner img {
+	    width: 100%;
+	    height: 100%;
+	}
+	
